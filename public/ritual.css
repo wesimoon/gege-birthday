@@ -1,0 +1,79 @@
+#garden-card:is([data-kind="cake"],[data-kind="gift"]){width:min(700px,calc(100vw - 24px),100dvh);max-height:calc(100dvh - 24px);overflow:hidden;background:#f0e2ca;color:#513929}
+#garden-card[data-kind="gift"] #close-card{background:#f8e8d3e0;border-radius:50%;z-index:5}
+#cake-view,#gift-view{padding:0;text-align:center}
+.ritual-caption{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:96px;padding:5px 12px}
+#cake-line,#gift-line{margin:0;font-size:clamp(15px,4.5vw,21px);line-height:1.4}
+#blow-close,#gift-open,#skip-ritual{color:#684533;text-shadow:none;text-decoration:underline;text-underline-offset:5px;touch-action:manipulation}
+#blow-close,#gift-open{font-size:clamp(14px,4vw,18px)}
+#skip-ritual{font:12px system-ui,sans-serif;color:#795943}
+#cake-touch{position:absolute;inset:5% 16% 7%;width:68%;height:88%;touch-action:manipulation}
+#cake-count{position:absolute;left:15%;top:9%;font:clamp(48px,13vw,112px)/1 Georgia,serif;color:#fff3d7;text-shadow:0 3px 18px #3c241bda;pointer-events:none}
+#cake-view #close-flames i{animation:candle-in .3s var(--ignite) both,candle .7s calc(var(--ignite) + .3s) infinite alternate ease-in-out}
+#close-flames i:nth-child(1){--ignite:.18s}#close-flames i:nth-child(2){--ignite:.46s}#close-flames i:nth-child(3){--ignite:.74s}
+@keyframes candle-in{from{opacity:0;transform:scale(.25)}to{opacity:1;transform:scale(1)}}
+#chapter[data-story="cake-wish"] .cake-shot::after,#chapter[data-story^="countdown-"] .cake-shot::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 51% 20%,#ffce7c26,transparent 62%);mix-blend-mode:screen}
+#chapter[data-story="countdown-interrupt"] .cake-shot{filter:brightness(.91);transition:filter .6s}
+.gift-shot{position:relative;aspect-ratio:470/386;overflow:hidden;isolation:isolate}
+.gift-shot>img:first-child{display:block;width:100%;height:100%;object-fit:cover}
+#gift-view:not([hidden]) .gift-shot{animation:gift-arrive 1.15s ease both}
+@keyframes gift-arrive{from{opacity:.42;transform:translateX(2%) scale(1.055);filter:blur(6px) brightness(1.15)}to{opacity:1;transform:none;filter:none}}
+#gift-touch{position:absolute;left:18%;top:39%;width:44%;height:47%;touch-action:manipulation}
+.gift-lid{position:absolute;left:17.87%;top:39.38%;width:44.47%;opacity:0;transform-origin:83% 41%;pointer-events:none}
+.gift-glow{position:absolute;left:12%;top:28%;width:55%;height:39%;opacity:0;pointer-events:none;background:radial-gradient(ellipse at 51% 69%,#fff0c7 1%,#ffdc96a8 24%,transparent 71%);mix-blend-mode:screen}
+#chapter[data-story="gift-opening"] .gift-lid{opacity:1;animation:lid-lift 1.44s ease both}
+#chapter[data-story="gift-opening"] .gift-glow{animation:gift-shine 1.44s ease both}
+@keyframes lid-lift{0%{transform:none}24%{transform:rotate(-2deg) translateY(-2%)}100%{transform:rotate(-14deg) translateY(-35%)}}
+@keyframes gift-shine{0%,23%{opacity:0}66%{opacity:.65}100%{opacity:.91}}
+#chapter[data-story="ring-selection"] .ring-table{animation:gift-arrive .65s ease both}
+@media(max-height:570px) and (min-aspect-ratio:1/1){
+  #garden-card:is([data-kind="cake"],[data-kind="gift"]){width:min(780px,calc(100vw - 24px))}
+  #cake-view:not([hidden]),#gift-view:not([hidden]){display:grid;grid-template-columns:minmax(0,1.58fr) minmax(128px,1fr);align-items:center}
+  .cake-shot,.gift-shot{width:min(100%,114dvh);margin:auto}
+  #garden-card[data-kind="finale"]{width:min(calc(100vw - 24px),80dvh)}
+  #finale-response{font-size:clamp(12px,3.4dvh,17px);padding-top:5px}
+  #garden-card[data-kind="keepsake"]{max-height:calc(100dvh - 20px)}
+}
+@media(prefers-reduced-motion:reduce){
+  #cake-view #close-flames i,#gift-view:not([hidden]) .gift-shot,#chapter[data-story="ring-selection"] .ring-table{animation:none}
+  #chapter[data-story="gift-opening"] .gift-lid{animation:none;transform:rotate(-12deg) translateY(-28%)}
+  #chapter[data-story="gift-opening"] .gift-glow{animation:none;opacity:.68}
+}
+#film:has(#garden-card[open]:is([data-kind="cake"],[data-kind="gift"],[data-kind="finale"],[data-kind="keepsake"])) :is(.controls,.dialogue){visibility:hidden}
+
+#film:has(#garden-card[open]:is([data-kind="cake"],[data-kind="gift"],[data-kind="finale"],[data-kind="keepsake"])) #garden{overflow:clip}
+
+#wick-controls{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;pointer-events:none}
+#wick-controls button{pointer-events:auto;width:clamp(23px,6.6%,48px);height:38%;min-height:44px;padding:0;border-radius:8px;touch-action:manipulation;background:linear-gradient(0deg,transparent,#ffebba29 75%,transparent)}
+#wick-controls button:hover,#wick-controls button:focus-visible{background:#ffebba45}
+#cake-touch{inset:0;width:100%;height:100%}
+.gift-frame{position:absolute;inset:0;transform:scale(1.27);transform-origin:40% 61%}
+.gift-frame>img:first-child{display:block;width:100%;height:100%;object-fit:cover}
+#tarot-deck{max-width:min(310px,100%);gap:clamp(15px,5vw,28px)}
+.tarot-card{aspect-ratio:2/3;align-self:start;min-height:0}
+.tarot-turn img{object-fit:contain}
+/* Keep a separate, reserved text and action area below the ring stage. */
+#garden-card[data-kind="finale"]{width:min(720px,calc(100vw - 26px));max-height:calc(100dvh - 24px);overflow:hidden}
+#finale-view{padding:0}
+.ring-table{height:min(51dvh,480px,68vw);min-height:0}
+.ring-table>img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.finale-footer{min-height:112px;display:grid;align-content:center;justify-items:center;padding:7px 12px 9px}
+#finale-response{min-height:0;padding:0;font-size:clamp(14px,3.6vw,20px);line-height:1.52}
+#finale-choices button{top:57%;height:38%}
+#finale-choices button::after{bottom:12%}
+@media(max-height:440px){
+ .ring-table{height:min(48dvh,63vw)}
+ .finale-footer{min-height:93px;padding-block:4px}
+ #finale-response{font-size:14px}
+}
+#garden-card[data-kind="gift"]{width:min(620px,calc(100vw - 24px),calc(100dvh - 122px))}
+.gift-shot{aspect-ratio:1}
+.gift-frame{transform:none}
+.gift-frame>img:first-child,.gift-open-plate{display:block;width:100%;height:100%;object-fit:cover}
+.gift-open-plate{position:absolute;inset:0;opacity:0;transition:opacity .72s ease;pointer-events:none}
+#chapter[data-story="gift-opening"] .gift-open-plate{opacity:1}
+#gift-touch{left:24%;top:38%;width:52%;height:45%}
+.gift-glow{left:20%;top:26%;width:60%;height:62%;mix-blend-mode:screen}
+#opened-gift{position:absolute;z-index:2;--x:27%;--y:70%;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:19%;min-width:54px;padding:0;touch-action:manipulation}
+#opened-gift img{width:100%;display:block;filter:drop-shadow(2px 5px 4px #21130c78);pointer-events:none}
+@media(max-height:570px) and (min-aspect-ratio:1/1){#garden-card[data-kind="gift"]{width:min(780px,calc(100vw - 24px))}.gift-shot{width:min(100%,84dvh)}}
+

@@ -1,0 +1,287 @@
+#garden-card.to-ending{opacity:0;transform:scale(.985);transition:opacity .37s,transform .37s}
+#ending{position:fixed;inset:0;z-index:8;display:grid;place-items:center;isolation:isolate;overflow:hidden;color:#f6e8d1}
+.ending-scene{position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#252015c9,#382b1a22 68%),url("assets/birthday-garden.webp") center 55% / cover;animation:ending-light .9s ease both}
+@keyframes ending-light{from{opacity:.25;filter:blur(7px)}to{opacity:1;filter:none}}
+#ending-close,#letter-close{position:absolute;z-index:3;top:8px;right:8px;min-width:44px;font:24px system-ui;color:#6a4934;text-shadow:none}
+#ending-close{top:max(12px,env(safe-area-inset-top));right:12px;border-radius:50%;background:#f0e1c6ee}
+#ending-return{position:absolute;left:50%;translate:-50% 0;bottom:max(13px,env(safe-area-inset-bottom));z-index:5;background:#34261cbd;border-radius:23px;font-size:14px}
+#album{width:min(730px,calc(100vw - 28px));outline:none;touch-action:pan-y}
+.book,.friend-letter{color:#5d4433;background:repeating-linear-gradient(0deg,#9c774e0b 0 1px,transparent 1px 5px),linear-gradient(110deg,#eddbbc,#f9edda 28%,#f3e1c6);box-shadow:0 16px 55px #1c150e91}
+.book{position:relative;border-radius:8px 14px 14px 8px;padding:clamp(15px,4vw,38px);border-left:8px solid #ab8f6a;animation:album-open .7s ease both}
+.book::before{content:"";position:absolute;inset:5px 8px;pointer-events:none;border:1px solid #b99e7848;border-radius:4px 11px 11px 4px}
+@keyframes album-open{from{opacity:.2;transform:perspective(850px) rotateY(-15deg) scale(.96)}to{opacity:1;transform:none}}
+.future-spread{display:grid;grid-template-columns:minmax(100px,.95fr) minmax(115px,1fr);gap:clamp(10px,3vw,24px);align-items:center;text-align:center}
+#future-photo{position:relative;display:block;max-width:245px;width:100%;aspect-ratio:4/5;padding:8% 8% 17%;border-radius:1px;background:#fff8e9;box-shadow:1px 5px 9px #6e513b45;transform:rotate(-4deg);transition:transform .45s,box-shadow .45s;z-index:1}
+.future-window{display:grid;place-items:center;height:100%;background:radial-gradient(ellipse at 20% 20%,#faf0de,#e3ccab);border:1px solid #d1b18e66;color:#a1815a;font:29px Georgia;text-shadow:none}
+#future-photo[aria-pressed="true"]{transform:translate(10%,-8%) rotate(1deg) scale(1.16);box-shadow:2px 15px 24px #6e513b68}
+.future-caption{font-size:clamp(14px,3.9vw,21px);line-height:1.6}
+.future-caption p{margin:5px 0}
+#friend-envelope{grid-column:2;justify-self:center;width:min(100%,180px);min-height:67px;margin-top:4px;background:linear-gradient(154deg,#f2d9cb 48%,#c1998459 49%,transparent 51%),linear-gradient(205deg,#f6e4d1 48%,#c199844f 49%,#ead2ba 51%);box-shadow:1px 5px 9px #6e513b55;color:#754c3c;text-shadow:none;border-radius:3px;font:italic 19px Georgia,"Songti SC",serif;rotate:4deg}
+.album-print{width:min(70%,420px);margin:auto;padding:10px;background:#fff8eb;box-shadow:2px 6px 12px #5c41364d;transform:rotate(-2deg)}
+.album-print img{width:100%;height:min(50dvh,430px);display:block;object-fit:contain;background:#e8d6bb}
+.album-print figcaption{padding:8px 0 2px;font-size:14px;text-align:center}
+.album-print figcaption span{display:block}
+.page-edge{position:absolute;top:50%;translate:0 -50%;z-index:2;color:#6a4934;text-shadow:none;min-width:44px;font-size:28px}
+.page-edge.previous{left:0}.page-edge.next{right:0}
+#letter-scene{width:min(585px,calc(100vw - 30px))}
+.friend-letter{position:relative;display:grid;grid-template-rows:auto minmax(0,1fr) auto;max-height:calc(100dvh - 38px);padding:clamp(18px,5vw,34px);border-radius:4px;animation:album-open .5s ease both}
+.friend-letter h2{font-weight:400;margin:0 38px 16px 0;outline:none}
+#birthday-letter{white-space:pre-wrap;overflow:auto;overscroll-behavior:contain;min-height:0;line-height:1.85;padding:0 5px 0 0;font-size:clamp(15px,4vw,18px);overflow-wrap:anywhere}
+#birthday-letter.letter-preview{color:#846b56;font-size:14px}
+#letter-finish{justify-self:end;color:#72503e;text-shadow:none;text-decoration:underline;text-underline-offset:5px;margin-top:7px}
+#dream-end{align-self:end;padding:24px 14px max(10dvh,30px);text-align:center;text-shadow:0 2px 12px #271a0d;outline:none;animation:ending-light 1.3s ease both}
+#dream-end h2{font:400 clamp(31px,7vw,58px) Georgia,"Songti SC",serif;margin:0 0 12px}
+#dream-end p{font-size:clamp(15px,4vw,21px);margin:0 0 17px}
+.end-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:6px}
+.end-actions button{border-bottom:1px solid #ebd2ad87;font-size:14px;padding-inline:8px}
+@media(prefers-reduced-motion:reduce){#ending *,#garden-card.to-ending{animation:none;transition:none}}
+
+#film:has(#ending:not([hidden])){overflow:clip}
+/* Journal covers and independently hinged leaves. */
+#album{width:min(900px,calc(100vw - 34px));perspective:1400px}
+.book{background:#7d826c;border:0;padding:9px 11px 12px;border-radius:9px 15px 15px 9px;box-shadow:0 22px 55px #211910a0,0 3px 0 #4f5547}
+.book:has([data-spread="cover"]){width:min(320px,85vw);margin:auto;padding:0;border-radius:7px 15px 15px 7px}
+#album-page{position:relative;display:grid;grid-template-columns:1fr 1fr;perspective:1150px;isolation:isolate}
+#album-page[data-spread="cover"]{display:block}
+#album-cover{display:grid;place-content:center;justify-items:center;gap:12px;width:100%;aspect-ratio:4/5;border:1px solid #a7a086;border-left:12px solid #545c4b;border-radius:7px 15px 15px 7px;color:#eddbaf;background:repeating-linear-gradient(0deg,#a8ac8b17 0 1px,transparent 1px 3px),radial-gradient(ellipse at 40% 20%,#858b72,#596451);box-shadow:inset 0 0 0 9px #ffffff13;text-shadow:none}
+#album-cover strong{font-size:clamp(20px,5vw,30px);font-weight:400;letter-spacing:.16em}
+#album-cover span,#album-cover i{font:italic 14px Georgia;letter-spacing:.15em}
+.album-lily{width:80px;height:auto;color:#af9368}
+#album-cover .album-lily{width:96px;color:#e5cf9c}
+.album-leaf{position:relative;box-sizing:border-box;height:min(56dvh,485px);padding:clamp(14px,2.5vw,28px);overflow:hidden;color:#65513d;background:repeating-linear-gradient(87deg,#92764908 0 1px,transparent 1px 4px),linear-gradient(90deg,#efe4cf,#fbf4e5 6%,#f6eddc 94%,#ddcab0);border-radius:3px 9px 9px 3px}
+.album-leaf.leaf-right{background:repeating-linear-gradient(86deg,#92764907 0 1px,transparent 1px 4px),linear-gradient(90deg,#d8c4a9,#f8efdf 7%,#f9f2e5);border-radius:3px 9px 9px 3px}
+.album-leaf h3{margin:0 0 7px;font-size:clamp(15px,2.4vw,24px);font-weight:400;letter-spacing:.1em}
+.album-leaf p{line-height:1.65;margin:6px 0;font-size:clamp(14px,2vw,19px)}
+.photo-collage{position:relative;width:100%;height:calc(100% - 34px)}
+.journal-print{position:absolute;width:42%;height:47%;margin:0;padding:5px 5px 11px;background:#fffaf0;box-shadow:1px 4px 9px #6a513a5c;transform:rotate(-7deg);left:3%;top:2%;display:flex;flex-direction:column}
+.journal-print:nth-child(2){left:50%;top:13%;width:43%;height:49%;transform:rotate(7deg)}
+.journal-print:nth-child(3){left:10%;top:49%;width:36%;height:42%;transform:rotate(-5deg)}
+.journal-print:nth-child(4){left:51%;top:57%;width:37%;height:39%;transform:rotate(4deg)}
+.journal-print:nth-child(n+5){left:67%;top:48%;width:28%;height:36%}
+.leaf-right .photo-collage .journal-print:first-child{width:66%;height:72%;left:6%;top:8%}
+.leaf-right .photo-collage .journal-print:nth-child(2){width:40%;height:46%;left:55%;top:44%}
+.journal-print::after{content:"";position:absolute;left:32%;top:-4px;width:34%;height:12px;rotate:3deg;background:#d7c4988a}
+.journal-print img{min-height:0;flex:1;width:100%;object-fit:cover}
+.journal-print.detail img{object-fit:cover;transform:scale(1.03)}
+.journal-print figcaption{font-size:11px;text-align:center;margin-top:4px}
+.pressed-page{display:grid;place-items:center;border:1px solid #bba68155;border-radius:44% 46% 4px 4px;background:radial-gradient(ellipse at 40% 65%,#e2e4d17d,transparent 69%)}
+.pressed-page .album-lily{width:40%;max-width:130px;rotate:-16deg;color:#909477}
+[data-spread="future"] .leaf-right,[data-spread="envelope"] .album-leaf{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+[data-spread="future"] #future-photo{width:min(68%,220px);margin:7% auto 0}
+.future-window .album-lily{width:40px;opacity:.5}
+[data-spread="future"] .leaf-right>.album-lily{width:55px;margin-top:15px;opacity:.65}
+[data-spread="envelope"] .leaf-left .album-lily{width:40%;color:#a69975;rotate:-14deg}
+#friend-envelope{position:relative;width:min(80%,265px);aspect-ratio:1.7;border:1px solid #ba9f7d;min-height:75px}
+#friend-envelope::after{content:"✧";position:absolute;bottom:14%;left:50%;translate:-50%;border-radius:50%;background:#b78376;color:#f9e8d2;width:23px;height:23px;display:grid;place-items:center;font:14px Georgia}
+.turning-leaf{position:absolute;z-index:5;top:0;width:50%;pointer-events:none}
+.turning-leaf.forward{right:0;transform-origin:left center}.turning-leaf.backward{left:0;transform-origin:right center}
+#letter-scene .friend-letter{background:radial-gradient(ellipse at 97% 96%,#e5c5b44a,transparent 39%),repeating-linear-gradient(92deg,#9c774e08 0 1px,transparent 1px 6px),#fbf3e4;border:1px solid #c5a681;outline:1px solid #c8ad8f78;outline-offset:-9px;padding:clamp(26px,6vw,43px)}
+@media(max-width:600px){
+ #album{width:calc(100vw - 24px)}
+ .book{padding:7px 7px 10px}
+ .album-leaf{height:min(52dvh,385px);padding:15px 10px}
+ .album-leaf h3{font-size:14px;letter-spacing:.04em}
+ .photo-collage{height:calc(100% - 40px)}
+ .journal-print{width:55%;padding:3px 3px 8px}
+ .journal-print:nth-child(2){left:42%;width:54%;top:18%}
+ .journal-print:nth-child(3){left:2%;width:49%;top:48%}
+ .journal-print:nth-child(4){left:43%;width:51%;top:58%}
+ .leaf-right .photo-collage .journal-print:first-child{width:86%;height:61%}
+ .leaf-right .photo-collage .journal-print:nth-child(2){width:63%;left:33%}
+ [data-spread="future"] #future-photo{width:88%;margin-top:25%}
+ .album-leaf p{font-size:14px}
+ .page-edge{top:auto;bottom:-4px;translate:none;background:#f7ecd9d9;border-radius:50%;min-width:39px}
+}
+
+/* Photographic materials sit below live type, captions, and photo slots. */
+#album{width:min(88vw,calc(82dvh * 1.76),1480px)}
+.book{padding:10px 13px 15px;background:linear-gradient(90deg,#555b46,#858b68 48%,#585d46 51%,#717a59);box-shadow:0 0 0 1px #b9a379,0 4px 0 #4d513c,0 8px 0 #2e3428,0 25px 70px #20150caf}
+.book:has([data-spread="cover"]){width:min(440px,70vw,62dvh)}
+#album-cover,.cover-turn{display:block;position:relative;aspect-ratio:4/5;width:100%;padding:0;border:0;border-radius:10px 16px 16px 9px;background:#6d775d url("assets/emboss-cover.webp") center / 100% 100% no-repeat;color:#f1dcb0;text-shadow:0 2px 2px #332b1ab0;box-shadow:0 4px 0 #4c543e,0 8px 0 #333b2b,0 22px 35px #21180e8c}
+#album-cover span,#album-cover strong,#album-cover i,.cover-turn span,.cover-turn strong,.cover-turn i{position:absolute;left:13%;right:5%;text-align:center}
+#album-cover span,.cover-turn span{top:51%;font-size:clamp(14px,2.4vw,23px)}
+#album-cover strong,.cover-turn strong{top:61%;font-size:clamp(22px,4.3vw,40px);letter-spacing:.1em}
+#album-cover i,.cover-turn i{top:76%;font-size:clamp(13px,2vw,19px)}
+#album-cover .album-lily,.cover-turn .album-lily{display:none}
+.cover-turn.turning-leaf{position:absolute;width:50%;height:100%;z-index:7}
+.album-leaf,.album-leaf.leaf-right{height:min(81dvh,calc((88vw - 26px) / 1.76),810px);background:#f8f0e2 url("assets/emboss-paper.webp") center / 100% 100%;padding:clamp(20px,3.6vw,62px) clamp(25px,4.2vw,72px);border-radius:7px 16px 16px 6px;box-shadow:inset 2px 0 3px #ad8f6052,0 2px 0 #d3ba96,0 4px 0 #a58b69;color:#654c3d}
+.album-leaf.leaf-left{box-shadow:inset -15px 0 19px -17px #6e482b,0 2px 0 #d3ba96,0 4px 0 #a58b69}
+.album-leaf.leaf-right{box-shadow:inset 15px 0 19px -16px #6e482b,0 2px 0 #d3ba96,0 4px 0 #a58b69}
+.album-leaf h3{font-family:"Songti SC",SimSun,Georgia,serif;font-size:clamp(24px,3.25vw,51px);line-height:1.15;margin:0 0 12px;color:#64492e}
+.album-leaf h3::after{content:"";display:block;width:42%;height:1px;background:linear-gradient(90deg,#a8834c,#bd9d6680,transparent);margin-top:10px}
+.photo-collage{height:65%;margin-top:5px}
+.photo-collage .journal-print:first-child{width:49%;height:69%;top:5%;left:1%}
+.photo-collage .journal-print:nth-child(2){width:46%;height:67%;left:50%;top:18%}
+.leaf-right .photo-collage .journal-print:first-child{width:65%;height:83%;left:0;top:6%}
+.leaf-right .photo-collage .journal-print:nth-child(2){width:34%;height:54%;left:61%;top:4%}
+.leaf-right .photo-collage .journal-print:nth-child(3){width:36%;height:51%;left:58%;top:47%}
+.journal-print{padding:5px 5px 12px;border:1px solid #e0c8a2;border-radius:1px}
+[data-spread="future"] #future-photo{width:min(89%,350px);margin:5% auto 0;box-shadow:0 9px 18px #78583962;border:1px solid #d6ba91}
+.future-window img{width:100%;height:100%;object-fit:cover}
+[data-spread="future"] .leaf-right p{font-size:clamp(18px,2.6vw,34px);margin:12px 0}
+[data-spread="envelope"] .leaf-left .album-lily{display:none}
+#friend-envelope{isolation:isolate;position:relative;width:min(100%,470px);aspect-ratio:4/3;border:none;rotate:none;background:transparent url("assets/emboss-envelope.webp") center / contain no-repeat;box-shadow:none;color:#694830}
+#friend-envelope span{position:absolute;top:34%;left:18%;right:18%;font:italic clamp(19px,3.6vw,44px) Georgia,SimSun,serif}
+#friend-envelope::after{content:"";position:absolute;inset:21% 18% 18%;width:auto;height:auto;border-radius:3px;translate:none;z-index:-1;opacity:0;background:#fcf1dd;border:1px solid #c6ac7c}
+#friend-envelope.unsealing span{opacity:0;transition:opacity .3s}
+#friend-envelope.unsealing::after{z-index:2;animation:extract-letter .65s ease both}
+@keyframes extract-letter{0%{opacity:0;transform:translateY(12%) scaleY(.45)}60%{opacity:1}100%{opacity:1;transform:translateY(-38%) scale(1.04)}}
+#letter-scene{width:min(1030px,calc(100vw - 32px))}
+#letter-scene .friend-letter{min-height:min(76dvh,740px);max-height:calc(100dvh - 35px);background:#fbf3e4 url("assets/emboss-paper.webp") center / 100% 100%;padding:clamp(26px,6vw,78px);border:0;outline:0;border-radius:13px;box-shadow:0 19px 55px #29190d78}
+.friend-letter h2{font:400 clamp(29px,5vw,53px) Georgia,SimSun,serif;color:#65432b}
+#birthday-letter{background:#fff9ed55;color:#624932;line-height:1.95}
+@media(max-width:600px){
+ #album{width:min(94vw,430px)}
+ #album-page{grid-template-columns:1fr}
+ .album-leaf:not(.is-current):not(.turning-leaf){display:none}
+ .album-leaf,.album-leaf.leaf-right{height:min(70dvh,620px);padding:28px 26px}
+ .album-leaf h3{font-size:25px}
+ .turning-leaf,.cover-turn.turning-leaf{width:100%}
+ .photo-collage{height:65%}
+ #album-cover strong,.cover-turn strong{font-size:clamp(20px,6.3vw,31px)}
+ #letter-scene .friend-letter{padding:30px 25px;min-height:68dvh}
+ .page-edge{bottom:-8px}
+}
+
+
+/* Lettering and spacing shared by the album and the unfolded letter. */
+#ending {
+  --album-type:"Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", serif;
+  --album-ink:#674d39;
+}
+#album-cover strong,.cover-turn strong,.album-leaf h3,.friend-letter h2,#friend-envelope span {
+  font-family:var(--album-type);
+  font-weight:400;
+}
+#album-cover strong,.cover-turn strong { font-size:clamp(18px,3vw,32px); }
+.album-leaf h3 {
+  font-size:clamp(17px,2vw,30px);
+  line-height:1.35;
+  letter-spacing:.09em;
+  margin:0;
+  text-wrap:balance;
+}
+.album-leaf h3::after {
+  width:2.2em;
+  background:linear-gradient(90deg,#a8834c99,transparent);
+  margin-top:6px;
+}
+[data-spread="portraits"] .album-leaf,[data-spread="gege"] .album-leaf {
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:clamp(8px,1.8dvh,19px);
+}
+[data-spread="portraits"] .photo-collage,[data-spread="gege"] .photo-collage {
+  height:100%;
+  margin:0;
+}
+.photo-collage .journal-print:first-child { width:48%; height:79%; top:5%; left:1%; rotate:2deg; }
+.photo-collage .journal-print:nth-child(2) { width:45%; height:77%; top:17%; left:53%; rotate:-2deg; }
+.leaf-right .photo-collage .journal-print:first-child { width:53%; height:88%; top:6%; left:0; rotate:1deg; }
+.leaf-right .photo-collage .journal-print:nth-child(2) { width:43%; height:44%; top:3%; left:57%; }
+.leaf-right .photo-collage .journal-print:nth-child(3) { width:42%; height:44%; top:53%; left:57%; rotate:8deg; }
+.journal-print::after { height:9px; }
+.album-leaf > p {
+  font:400 clamp(13px,1.25vw,18px)/1.65 var(--album-type);
+  color:var(--album-ink);
+  margin:0;
+}
+[data-spread="future"] .leaf-left {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(7px,1.5dvh,15px);
+}
+[data-spread="future"] .leaf-left h3 { align-self:start; }
+[data-spread="future"] #future-photo {
+  width:min(66%,205px,35dvh);
+  margin:0;
+  flex:none;
+  padding:4% 4% 8%;
+}
+[data-spread="future"] #future-photo[aria-pressed="true"] { transform:translate(4%,-3%) rotate(1deg) scale(1.09); }
+.future-window {
+  background:radial-gradient(ellipse at 50% 45%,#f8efdf,#e6d3b8);
+  box-shadow:inset 0 0 0 4px #f9efdc66;
+}
+.future-window .album-lily { width:47%; max-width:74px; color:#a19172; }
+[data-spread="future"] .leaf-right p {
+  font:400 clamp(16px,1.8vw,25px)/1.6 var(--album-type);
+  margin:3px 0;
+}
+[data-spread="envelope"] .leaf-left { gap:clamp(8px,2dvh,22px); }
+[data-spread="envelope"] .leaf-left .album-lily {
+  display:block;
+  width:clamp(42px,12dvh,110px);
+  opacity:.73;
+  filter:drop-shadow(1px 1px 0 #fff6e4);
+}
+[data-spread="envelope"] h3::after { margin-inline:auto; }
+#friend-envelope {
+  width:min(96%,430px);
+  aspect-ratio:1.4;
+  rotate:-3deg;
+  filter:drop-shadow(1px 7px 7px #6a4a3529);
+  transition:rotate .25s ease,filter .25s ease;
+}
+#friend-envelope:hover,#friend-envelope:focus-visible { rotate:0deg; filter:drop-shadow(1px 9px 9px #6a4a3544); }
+#friend-envelope span { font-size:clamp(17px,2.4vw,32px); }
+[data-spread="envelope"] .leaf-right small { font:14px var(--album-type); color:#765c47; }
+#letter-scene { width:min(660px,calc(100vw - 24px)); }
+#letter-scene .friend-letter {
+  box-sizing:border-box;
+  height:min(81dvh,750px);
+  max-height:calc(100dvh - 108px);
+  min-height:0;
+  padding:clamp(25px,5dvh,51px) clamp(23px,5vw,58px) 16px;
+  background:linear-gradient(#fff9eea6,#fff9eee0),url("assets/emboss-paper.webp") center / 100% 100%;
+  outline:1px solid #b492654f;
+  outline-offset:-10px;
+  border-radius:8px;
+}
+.friend-letter h2 {
+  font-size:clamp(23px,3.3vw,33px);
+  line-height:1.3;
+  margin:0 0 9px;
+  padding-bottom:9px;
+  border-bottom:1px solid #ae8c6152;
+  color:var(--album-ink);
+}
+#birthday-letter {
+  background:none;
+  scrollbar-width:thin;
+  scrollbar-color:#b39470 #efe1cd;
+  color:#553e2e;
+  line-height:1.85;
+  font-size:clamp(15px,2vw,17px);
+  padding:0 9px 0 0;
+  overflow-wrap:break-word;
+}
+#birthday-letter p { margin:0 0 1em; }
+#birthday-letter .letter-signature { text-align:right; margin:1.5em 0 .5em; }
+#letter-finish { margin-top:2px; }
+#ending-close { left:max(12px,env(safe-area-inset-left)); right:auto; }
+#sound {
+  position:absolute;
+  z-index:9;
+  top:max(10px,env(safe-area-inset-top));
+  right:max(14px,env(safe-area-inset-right));
+  font:13px system-ui,sans-serif;
+  background:#27221cde;
+  border-radius:24px;
+  padding:0 13px;
+}
+#film:has(#ending:not([hidden])) #sound { position:fixed; }
+.controls { right:calc(max(14px,env(safe-area-inset-right)) + 78px); }
+
+@media(max-width:600px) {
+  .album-leaf,.album-leaf.leaf-right { height:min(71dvh,565px); padding:clamp(18px,4dvh,34px) clamp(18px,6vw,34px); }
+  .album-leaf h3 { font-size:clamp(18px,5.6vw,23px); }
+  [data-spread="portraits"] .album-leaf:not(.is-current):not(.turning-leaf),
+  [data-spread="gege"] .album-leaf:not(.is-current):not(.turning-leaf) { display:none; }
+  .album-leaf > p { font-size:15px; }
+  #friend-envelope span { font-size:clamp(19px,6vw,27px); }
+  #letter-scene .friend-letter { height:min(84dvh,710px); padding:23px 21px 12px; }
+  #birthday-letter { font-size:16px; }
+}

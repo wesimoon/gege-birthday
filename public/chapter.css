@@ -1,0 +1,109 @@
+#tarot-patch{position:absolute;left:60.3%;top:51.6%;width:22.55%;pointer-events:none}
+#tarot{--x:71.3%;--y:59.2%;--w:19%;--h:10.2%}
+#ritual{position:absolute;z-index:5;left:50%;bottom:max(11%,62px);translate:-50% 0;white-space:nowrap;padding:0 16px;border-radius:24px;background:#32261ed9;color:#fff2d9;font-size:15px}
+#garden[data-ritual="wish"] #ritual{bottom:max(14%,82px)}
+#candles{position:absolute;inset:0;pointer-events:none}
+#candles i{position:absolute;top:45.1%;width:1%;height:2.45%;border-radius:60% 38% 56% 55%;background:radial-gradient(ellipse at 50% 70%,#fff9cf 20%,#ffbf53 62%,#ee8e30);box-shadow:0 0 16px 5px #ffe29a9c;transform-origin:50% 94%;animation:candle .7s infinite alternate ease-in-out}
+#candles i:nth-child(1){left:47.7%}#candles i:nth-child(2){left:50.1%;animation-delay:-.3s}#candles i:nth-child(3){left:52.6%;animation-delay:-.6s}
+@keyframes candle{to{transform:scale(.87,1.12) rotate(5deg)}}
+#garden::after{transition:background .45s}
+#garden[data-ritual="dim"]::after{background:#19150bbb}
+#garden[data-ritual="turn"]{--garden-x:-4vw;--garden-zoom:1.07}
+#garden[data-ritual="turn"]::after{background:linear-gradient(105deg,transparent,#f7dba473)}
+#garden-card:is([data-kind="tarot"],[data-kind="finale"],[data-kind="keepsake"]){width:min(760px,calc(100vw - 26px));background:#f1e4cd;max-height:calc(100dvh - 34px);overscroll-behavior:contain}
+#garden-card:is([data-kind="tarot"],[data-kind="finale"],[data-kind="keepsake"]) #close-card{position:sticky;float:right;top:6px;margin:6px 7px -50px 0;right:7px;background:#f9ead7ee;border-radius:50%;z-index:5}
+#chapter{color:#493527;animation:chapter-enter .65s cubic-bezier(.18,.7,.23,1) both}
+@keyframes chapter-enter{from{opacity:0;transform:translate(7%,2%) scale(.92)}to{opacity:1;transform:none}}
+#tarot-view{position:relative;isolation:isolate;padding:44px clamp(12px,4vw,35px) 16px}
+.tarot-texture{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;z-index:-1}
+#tarot-deck{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(7px,2.7vw,24px);max-width:480px;margin:auto}
+.tarot-card{position:relative;aspect-ratio:120/178;padding:0;perspective:720px;color:#ead7a4;text-shadow:none}
+.tarot-turn{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .62s cubic-bezier(.2,.67,.25,1)}
+.tarot-card[aria-pressed="true"] .tarot-turn{transform:translateY(-4px) rotateY(180deg)}
+.tarot-back,.tarot-front{position:absolute;inset:0;backface-visibility:hidden;border-radius:7px;box-shadow:0 6px 13px #382f2b50;display:grid;place-items:center}
+.tarot-back{background:radial-gradient(ellipse,#68724b,#353f2b)}
+.tarot-front{transform:rotateY(180deg);color:#785937;background:#f3e6c6}
+.tarot-front.star{background:#d9ddd0}.tarot-front.lovers{background:#eddbcb}
+.tarot-turn svg{width:100%;height:100%}
+.tarot-front b{position:absolute;bottom:8%;font:700 clamp(7px,2vw,12px) Georgia,serif;letter-spacing:.08em}
+#crystals{display:flex;justify-content:center;gap:clamp(15px,6vw,52px);margin-top:13px}
+.crystal{display:grid;justify-items:center;gap:2px;color:#5c4433;text-shadow:none;padding:3px 0;font-size:12px;min-width:48px}
+.crystal img{height:49px;width:50px;object-fit:contain;filter:drop-shadow(0 4px 3px #3c253847);transition:transform .35s,filter .35s}
+.crystal.lit img{transform:translateY(-8px) rotate(-8deg) scale(1.17);filter:drop-shadow(0 0 9px #fff0af)}
+.crystal.violet.lit img{filter:drop-shadow(0 0 8px #b189c9)}
+.crystal.rose.lit img{filter:drop-shadow(0 0 8px #ed9cac)}
+#tarot-reading{text-align:center;padding:9px 5px;min-height:55px;font-size:14px;line-height:1.5}
+#tarot-reading p{white-space:pre-line;margin:7px 0 0}
+#tarot-reading strong{font-weight:500;letter-spacing:.04em}
+#garden-card[data-kind="finale"]{background:#eee3cf}
+.ring-table{position:relative}
+.ring-table>img{display:block;width:100%;height:auto}
+#finale-choices{position:absolute;inset:0}
+#finale-choices button{position:absolute;left:var(--ring-position);top:54%;translate:-50% -50%;width:22%;height:24%;border-radius:50%;transition:background .3s,box-shadow .3s}
+#finale-choices button[aria-pressed="true"]{box-shadow:0 0 0 1px #fff5cfbb,0 0 26px #fff1b5c9;background:radial-gradient(ellipse,#fff4c222,transparent 76%)}
+#finale-response{padding:14px 20px 8px;min-height:42px;text-align:center;font-size:clamp(15px,4vw,20px);line-height:1.55}
+#finale-view{padding-bottom:12px;text-align:center}
+#finale-skip,#accept-ring,#keepsake-view button,#keepsake-view a{color:#694733;text-shadow:none;min-height:44px;text-underline-offset:5px;text-decoration:underline;font-size:14px}
+#keepsake-view{text-align:center;background:#eddfc7;padding:clamp(10px,2dvh,18px) 12px 8px}
+#garden-card[data-kind="keepsake"]{width:min(560px,calc(100vw - 26px))}
+#keepsake-view img{display:block;width:auto;height:auto;max-width:100%;max-height:min(650px,calc(100dvh - 145px));margin:auto}
+.keepsake-actions{display:flex;justify-content:center;align-items:center;gap:clamp(8px,4vw,22px);margin-top:5px}
+#keepsake-view a{display:inline-grid;place-items:center;padding:0 8px}
+#blessing-note{margin:4px 0 8px;font-size:14px;letter-spacing:.08em}
+@media(prefers-reduced-motion:reduce){#chapter,#candles i{animation:none}.tarot-turn,.crystal img{transition:none}}
+#ritual,#chapter button{-webkit-tap-highlight-color:transparent}
+#garden-card[data-kind="tarot"]{width:min(640px,calc(100vw - 26px));background:#354638;color:#f2e9d9}
+#tarot-view{padding:38px clamp(10px,4vw,28px) 13px;color:#f2e9d9;overflow:hidden}
+.tarot-texture{opacity:.98}
+#tarot-deck{max-width:min(322px,100%);gap:clamp(13px,5vw,30px)}
+.tarot-card{aspect-ratio:2/3}
+.tarot-turn img{display:block;width:100%;height:100%;object-fit:cover;border-radius:5px}
+.tarot-front b{bottom:4%;padding:2px 3px;background:#f2e5c7e8;color:#60492f;font-size:clamp(6px,1.65vw,10px)}
+#crystals{position:relative;isolation:isolate;gap:clamp(6px,5vw,29px);margin:24px 0 0}
+.crystal{color:#f0e2c8}
+.crystal img{height:46px}
+.crystal.gold.lit img{filter:drop-shadow(0 0 8px #f4c275)}
+.crystal.violet.lit img{animation:crystal-slow 2.8s ease-in-out infinite alternate}
+@keyframes crystal-slow{to{filter:drop-shadow(1px -2px 12px #ccb4dd) brightness(1.14)}}
+#tarot-reading{margin:11px auto 0;border-top:1px solid #d6b67d54;padding:12px 4px 3px;max-width:460px;min-height:56px;line-height:1.52;font-size:clamp(13px,3.6vw,16px)}
+#tarot-view[data-stone="clear"] #crystals::before,#tarot-view[data-stone="clear"] #crystals::after{content:"";position:absolute;pointer-events:none;z-index:-1}
+#tarot-view[data-stone="clear"] #crystals::before{width:68%;height:48px;right:31%;top:-37px;transform:rotate(22deg);transform-origin:right center;background:linear-gradient(90deg,transparent,#ffe1a385 76%,#fff4ca18);clip-path:polygon(0 10%,100% 54%,100% 79%,0 98%);filter:blur(6px);animation:light-in .9s both}
+#tarot-view[data-stone="clear"] #crystals::after{width:clamp(65px,26%,115px);height:24px;left:59%;top:31px;transform:rotate(14deg) skewX(-24deg);background:linear-gradient(90deg,#ed8d79 3%,#efac78 19%,#f3d68d 34%,#aaca9f 49%,#88b5cc 65%,#b5a1ca 84%,transparent);mask-image:radial-gradient(ellipse,#000 20%,transparent 73%);filter:blur(2px);animation:prism 3.2s ease-in-out .3s infinite alternate both}
+@keyframes light-in{from{opacity:0}to{opacity:1}}
+@keyframes prism{from{opacity:.12;translate:0 0}to{opacity:.89;translate:5px 2px}}
+#garden-card[data-kind="cake"]{width:min(700px,calc(100vw - 24px),113dvh);background:#efe1c8;overflow:hidden}
+#garden-card[data-kind="cake"] #close-card{background:#f8e8d3e0;border-radius:50%;z-index:5}
+#cake-view{text-align:center;padding-bottom:7px}
+.cake-shot{position:relative;overflow:hidden;aspect-ratio:4/3}
+.cake-shot img{width:100%;height:100%;object-fit:cover;animation:cake-push 3.4s cubic-bezier(.2,.6,.3,1) both;transform-origin:50% 8%}
+@keyframes cake-push{from{transform:scale(1)}to{transform:scale(1.025)}}
+#close-flames,#cake-smoke{position:absolute;inset:0;pointer-events:none}
+#close-flames i,#cake-smoke i{position:absolute;left:var(--wick);top:6.7%}
+#close-flames i:nth-child(1),#cake-smoke i:nth-child(1){--wick:43.3%}
+#close-flames i:nth-child(2),#cake-smoke i:nth-child(2){--wick:50%}
+#close-flames i:nth-child(3),#cake-smoke i:nth-child(3){--wick:56.45%}
+#close-flames i{width:2.1%;height:5.5%;translate:-50% -95%;border-radius:65% 42% 60% 48%;background:radial-gradient(ellipse at 52% 72%,#fff9d7 20%,#ffd76b 57%,#f3a03c 80%);box-shadow:0 0 22px 5px #ffcf6497;transform-origin:50% 100%;animation:candle .7s infinite alternate ease-in-out}
+#close-flames i:nth-child(2){animation-delay:-.22s}#close-flames i:nth-child(3){animation-delay:-.43s}
+#cake-smoke i{width:4%;height:10%;background:radial-gradient(ellipse,#f4ebd58c,transparent 71%);filter:blur(3px);animation:smoke-rise 1.08s ease-out both}
+#cake-smoke i:nth-child(2){animation-delay:.09s}#cake-smoke i:nth-child(3){animation-delay:.15s}
+@keyframes smoke-rise{0%{opacity:.72;transform:translate(-50%,-15%) scaleX(.25)}100%{opacity:0;transform:translate(28%,-117%) scaleX(1.5)}}
+#cake-view[data-blown] .cake-shot img{filter:brightness(.79);transition:filter .6s}
+#cake-line{margin:9px 10px 2px;font-size:clamp(15px,4vw,19px)}
+#blow-close{color:#684533;text-shadow:none;text-decoration:underline;text-underline-offset:5px}
+#garden-card[data-kind="finale"]{width:min(745px,calc(100vw - 26px),121dvh);overflow:hidden}
+.ring-table{overflow:hidden}
+#finale-view{padding-bottom:8px}
+#finale-response{padding:9px 12px 3px;min-height:34px}
+#finale-choices button{top:51%;width:23%;height:33%;padding:0;isolation:isolate}
+#finale-choices button[aria-pressed="true"]{box-shadow:none;background:none;z-index:2}
+#finale-choices button::after{content:"";position:absolute;left:19%;right:19%;height:11%;bottom:18%;border-radius:50%;background:#72513a70;filter:blur(6px);z-index:-1;transition:opacity .35s}
+.jewel{display:grid;place-items:center;width:100%;height:100%;transition:filter .4s,transform .5s,opacity .4s}
+.jewel img{width:86%;max-height:67%;object-fit:contain;filter:drop-shadow(0 1px 1px #5e492e50);animation:jewel-float 4.4s var(--delay) ease-in-out infinite alternate}
+@keyframes jewel-float{from{transform:translateY(-4%) rotate(-1.3deg)}to{transform:translateY(-15%) rotate(1.7deg);filter:drop-shadow(0 2px 1px #5e492e44) brightness(1.09)}}
+#finale-choices:has([aria-pressed="true"]) button:not([aria-pressed="true"]) .jewel{filter:blur(1px);opacity:.72}
+#finale-choices button[aria-pressed="true"] .jewel{transform:translateY(-17%) scale(1.15);filter:drop-shadow(0 0 13px #fff2bdad)}
+#finale-choices button[aria-pressed="true"]::after{opacity:.54}
+#keepsake-view img{animation:keepsake-focus .7s ease both}
+@keyframes keepsake-focus{from{opacity:.24;filter:blur(6px)}to{opacity:1;filter:none}}
+@media(max-height:560px){#tarot-deck{max-width:230px}#crystals{margin-top:12px}.crystal img{height:34px}#tarot-reading{margin-top:6px;padding-top:5px}}
+@media(prefers-reduced-motion:reduce){.jewel img,.crystal.violet.lit img,.cake-shot img,#close-flames i,#keepsake-view img{animation:none}#tarot-view[data-stone="clear"] #crystals::after{animation:none;opacity:.85}}
