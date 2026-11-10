@@ -201,7 +201,11 @@ function finishLetter() {
   setEndingView('end');
 }
 function initEnding() {
-  singleLeaf.addEventListener('change',() => { if (!ending.hidden && ending.dataset.view === 'album') renderAlbum(endingPage,false); });
+  function onAlbumViewportChange() {
+    if (!ending.hidden && ending.dataset.view === 'album') renderAlbum(endingPage,false);
+  }
+  if (singleLeaf.addEventListener) singleLeaf.addEventListener('change',onAlbumViewportChange);
+  else singleLeaf.addListener(onAlbumViewportChange);
   byId('blessing').addEventListener('click', () => {
     if (card.dataset.kind !== 'keepsake' || card.classList.contains('is-closing') || card.classList.contains('to-ending')) return;
     card.classList.add('to-ending');

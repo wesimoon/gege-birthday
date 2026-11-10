@@ -103,7 +103,9 @@ const dreamAudio = (() => {
   function start(fromGesture = false) {
     if (!enabled) return;
     if (!(window.AudioContext || window.webkitAudioContext)) return;
-    if (!context) prepare();
+    if (!decks) {
+      try { prepare(); } catch { return; }
+    }
     if (context.state !== 'running') context.resume().catch(() => {});
     if (active?.name === track && !active.media.paused) return;
     selectTrack(track);

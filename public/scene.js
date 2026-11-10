@@ -384,7 +384,6 @@ document.addEventListener('click',unlockDreamAudio,true);
 document.addEventListener('keydown',event => {
   if (event.key === 'Enter' || event.key === ' ') unlockDreamAudio(event);
 },true);
-dreamAudio.start();
 
 for (let i = 0; i < 13; i++) {
   const mote = document.createElement('i');
@@ -396,30 +395,21 @@ for (let i = 0; i < 13; i++) {
 initChapter();
 
 const loading = byId('loading');
-const notice = setTimeout(() => { loading.hidden = false; }, 600);
-const assets = [...Array.from(film.querySelectorAll('img[src]'), image => image.src), 'assets/lilies-left.webp', 'assets/lilies-right.webp'];
-Promise.all([...new Set(assets)].map(src => {
-  const asset = new Image();
-  asset.src = src;
-  return asset.decode();
-})).then(() => {
-  clearTimeout(notice);
+const openingImages = [...lens.querySelectorAll('#room img, .friend img')];
+const openingReady = Promise.all(openingImages.map(image => {
+  if (image.complete) return Promise.resolve();
+  return new Promise(resolve => {
+    image.addEventListener('load',resolve,{once:true});
+    image.addEventListener('error',resolve,{once:true});
+  });
+}));
+let openingTimeout;
+const openingDeadline = new Promise(resolve => { openingTimeout = setTimeout(resolve,3000); });
+Promise.race([openingReady,openingDeadline]).then(() => {
+  clearTimeout(openingTimeout);
+  play();
   loading.hidden = true;
   document.querySelector('.controls').hidden = false;
   sound.hidden = false;
-  play();
-}).catch(() => {
-  clearTimeout(notice);
-  loading.hidden = false;
-  loading.textContent = '花房素材加载失败，请刷新后重试。';
+  dreamAudio.start();
 });
-
-
-
-
-
-
-
-
-
-

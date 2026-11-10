@@ -11,16 +11,16 @@
 <link rel="stylesheet" href="/ritual.css?v=gift3">
 <link rel="stylesheet" href="/ending.css?v=final">
 <script src="/ending-content.js?v=final" defer></script>
-<script src="/ending.js?v=final" defer></script>
-<script src="/audio.js?v=final" defer></script>
+<script src="/ending.js?v=mobile-start" defer></script>
+<script src="/audio.js?v=mobile-start" defer></script>
 <script src="/chapter.js?v=audio1" defer></script>
-<script src="/scene.js?v=final" defer></script>
+<script src="/scene.js?v=mobile-start" defer></script>
 </head>
 <body>
 <main id="film" aria-label="Dear Gege, Tonight Is Yours · 百合花房" data-phase="loading">
   <div id="lens">
     <div id="room">
-      <img id="greenhouse" src="/assets/greenhouse.webp" alt="">
+      <img id="greenhouse" fetchpriority="high" src="/assets/greenhouse.webp" alt="">
     </div>
     <div id="invitation">
       <div class="hand-frame">
@@ -43,16 +43,16 @@
   <div id="garden-passage" aria-hidden="true" hidden><i></i><i></i><i></i></div>
   <section id="garden" aria-label="只为格格准备的生日花园" tabindex="-1" hidden inert>
     <div class="garden-world">
-      <img id="garden-plate" src="/assets/birthday-garden.webp" alt="阳光下的玻璃花房，木桌上放着粉白百合、奶油蛋糕、塔罗和一张折叠邀请卡。">
+      <img loading="lazy" id="garden-plate" src="/assets/birthday-garden.webp" alt="阳光下的玻璃花房，木桌上放着粉白百合、奶油蛋糕、塔罗和一张折叠邀请卡。">
       <button id="lilies" class="garden-spot" aria-label="查看百合花束" aria-controls="lily-tag" aria-expanded="false"><span>百合花束</span></button>
       <button id="lily-tag" aria-label="打开花束里的小卡" aria-haspopup="dialog" hidden><span aria-hidden="true">윤기</span></button>
       <svg id="cake-fork" aria-hidden="true" viewBox="0 0 105 30">
         <defs><linearGradient id="silver" x2="0" y2="1"><stop stop-color="#645844"/><stop offset=".42" stop-color="#f9e5b8"/><stop offset=".64" stop-color="#c1a77f"/><stop offset="1" stop-color="#756249"/></linearGradient></defs>
         <path fill="url(#silver)" stroke="#5e4b33" stroke-width=".65" d="M98 11Q105 15 98 19L41 17Q36 17 30 22Q23 26 6 24L1 22L23 20V18L2 19V16L23 16V14L2 14V11L23 12V10L2 8L7 6Q25 5 31 9Q37 14 42 13Z"/>
       </svg>
-      <img id="tarot-patch" src="/assets/tarot-patch-fit.webp" alt="">
+      <img loading="lazy" id="tarot-patch" src="/assets/tarot-patch-fit.webp" alt="">
       <button id="tarot" class="garden-spot" aria-label="看塔罗与水晶" aria-haspopup="dialog"><span>塔罗与水晶</span></button>
-      <button id="opened-gift" aria-label="看看拆开的礼物盒" hidden><img src="/assets/gift-table-open.webp" alt=""></button>
+      <button id="opened-gift" aria-label="看看拆开的礼物盒" hidden><img loading="lazy" src="/assets/gift-table-open.webp" alt=""></button>
       <div id="desk-prints" aria-hidden="true"></div>
       <button id="cake" class="garden-spot" aria-label="碰一碰生日蛋糕"><span>生日蛋糕</span></button>
       <button id="photo-first" class="garden-spot photo-spot" aria-label="拿起百合拍立得" aria-haspopup="dialog"><span>百合拍立得</span></button>
@@ -75,7 +75,7 @@
       <h2 id="photo-title" class="sr-only">拍立得</h2>
       <button id="flip-photo" aria-label="翻到拍立得背面" aria-pressed="false">
         <span class="print-turn">
-          <span class="print-front"><img id="print-image" alt=""><span id="print-caption"></span></span>
+          <span class="print-front"><img loading="lazy" id="print-image" alt=""><span id="print-caption"></span></span>
           <span class="print-back" aria-hidden="true"><span id="print-note"></span><span lang="ko">윤기</span></span>
         </span>
       </button>
@@ -84,14 +84,14 @@
     <section id="chapter" hidden aria-labelledby="chapter-title">
       <h2 id="chapter-title" class="sr-only"></h2>
       <div id="tarot-view" hidden>
-        <img class="tarot-texture" src="/assets/tarot-cloth.webp" alt="">
+        <img loading="lazy" class="tarot-texture" src="/assets/tarot-cloth.webp" alt="">
         <div id="tarot-deck"></div>
         <div id="crystals"></div>
         <div id="tarot-reading" aria-live="polite"></div>
       </div>
       <div id="cake-view" hidden>
         <div class="cake-shot">
-          <img src="/assets/cake-close.webp" alt="三根蜡烛与粉色奶油裱花的生日蛋糕近景">
+          <img loading="lazy" src="/assets/cake-close.webp" alt="三根蜡烛与粉色奶油裱花的生日蛋糕近景">
           <div id="close-flames" hidden aria-hidden="true"><i></i><i></i><i></i></div>
           <div id="cake-smoke" hidden aria-hidden="true"><i></i><i></i><i></i></div>
           <div id="wick-controls" hidden>
@@ -111,8 +111,8 @@
       <div id="gift-view" hidden>
         <div class="gift-shot">
           <div class="gift-frame">
-          <img src="/assets/gift-stage-closed.webp" alt="花房木桌上的粉色缎带礼物盒">
-          <img class="gift-open-plate" src="/assets/gift-stage-open.webp" alt="">
+          <img loading="lazy" src="/assets/gift-stage-closed.webp" alt="花房木桌上的粉色缎带礼物盒">
+          <img loading="lazy" class="gift-open-plate" src="/assets/gift-stage-open.webp" alt="">
           <div class="gift-glow" aria-hidden="true"></div>
           <button id="gift-touch" aria-label="拆开礼盒" hidden></button>
           </div>
@@ -124,7 +124,7 @@
       </div>
       <div id="finale-view" hidden>
         <div class="ring-table">
-          <img src="/assets/finale-linen.webp" alt="百合与纱帘旁，亚麻桌面上同时放着拉环、银色素圈、粉色宝石戒指和主戒指">
+          <img loading="lazy" src="/assets/finale-linen.webp" alt="百合与纱帘旁，亚麻桌面上同时放着拉环、银色素圈、粉色宝石戒指和主戒指">
           <div id="finale-choices"></div>
         </div>
         <div class="finale-footer">
@@ -134,7 +134,7 @@
         </div>
       </div>
       <div id="keepsake-view" hidden>
-        <img src="/assets/gege-keepsake-crop.png" alt="格格本人的手，裸粉美甲与无名指上的主戒指">
+        <img loading="lazy" src="/assets/gege-keepsake-crop.png" alt="格格本人的手，裸粉美甲与无名指上的主戒指">
         <div class="keepsake-actions">
           <a href="assets/gege-keepsake-crop.png" download="11.11-For-Gege.png">保存纪念图</a>
           <button id="blessing" type="button">下一封祝福</button>
@@ -179,7 +179,7 @@
     <button id="skip-cue" hidden>略过</button>
     <div id="caption" role="status" aria-live="polite"><span id="speaker"></span><p id="line"></p></div>
   </section>
-  <p id="loading" role="status" hidden>正在等花房亮起来</p>
+  <p id="loading" role="status">正在等花房亮起来</p>
 </main>
 </body>
 </html>
