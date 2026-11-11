@@ -107,3 +107,6 @@
 @keyframes keepsake-focus{from{opacity:.24;filter:blur(6px)}to{opacity:1;filter:none}}
 @media(max-height:560px){#tarot-deck{max-width:230px}#crystals{margin-top:12px}.crystal img{height:34px}#tarot-reading{margin-top:6px;padding-top:5px}}
 @media(prefers-reduced-motion:reduce){.jewel img,.crystal.violet.lit img,.cake-shot img,#close-flames i,#keepsake-view img{animation:none}#tarot-view[data-stone="clear"] #crystals::after{animation:none;opacity:.85}}
+
+#tarot-patch{z-index:1;height:auto;display:block}
+#tarot{z-index:2}

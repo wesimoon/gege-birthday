@@ -90,3 +90,12 @@
 
 #cake-fork,.desk-print{position:absolute;pointer-events:none}
 @media(prefers-reduced-motion:reduce){#garden[data-intro] .garden-spot::after,#lily-tag span,#garden[data-cake] #cake-fork,#photo-view,#garden-card.is-closing .paper,#garden-card.is-closing #photo-view{animation:none}.print-turn{transition:none}}
+
+/* Explicit dimensions keep the garden visible in mobile embedded browsers. */
+#garden { background:#393d29 url("assets/birthday-garden.webp") center / cover no-repeat; }
+.garden-world { height:calc(max(min(100vw,105dvh),68dvh) / .800286); }
+#garden-plate { object-fit:fill; }
+@supports not (height:1dvh) {
+  #film { height:100vh; }
+  .garden-world { width:100vw; height:calc(100vw / .800286); }
+}

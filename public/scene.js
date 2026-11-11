@@ -371,11 +371,17 @@ const sound = byId('sound');
 function syncVolume() {
   dreamAudio.setQuiet(film.classList.contains('ritual-quiet') || chapter.dataset.story?.startsWith('countdown'));
 }
+function updateSoundState() {
+  const state = dreamAudio.state();
+  sound.setAttribute('aria-pressed',String(state !== 'off'));
+  sound.textContent = state === 'off' ? '音效关' : state === 'playing' ? '音效开' : '轻点开启声音';
+  sound.title = state === 'off' ? '开启声音' : state === 'playing' ? '关闭声音' : '点击播放声音';
+}
+window.addEventListener('dream-audio-state',updateSoundState);
 sound.addEventListener('click', () => {
-  const enabled = dreamAudio.toggle();
-  sound.setAttribute('aria-pressed',String(enabled));
-  sound.textContent = enabled ? '音效开' : '音效关';
-  sound.title = enabled ? '关闭音效' : '开启音效';
+  if (dreamAudio.state() === 'waiting') dreamAudio.start();
+  else dreamAudio.toggle();
+  updateSoundState();
 });
 function unlockDreamAudio(event) {
   if (event.isTrusted && !sound.contains(event.target)) dreamAudio.start(true);
@@ -395,21 +401,52 @@ for (let i = 0; i < 13; i++) {
 initChapter();
 
 const loading = byId('loading');
-const openingImages = [...lens.querySelectorAll('#room img, .friend img')];
-const openingReady = Promise.all(openingImages.map(image => {
-  if (image.complete) return Promise.resolve();
-  return new Promise(resolve => {
-    image.addEventListener('load',resolve,{once:true});
-    image.addEventListener('error',resolve,{once:true});
+const openingImages = [...lens.querySelectorAll('img[src]')];
+let openingAttempt = 0;
+function loadOpeningImage(image, retry) {
+  if (image.complete && image.naturalWidth > 0) return Promise.resolve();
+  return new Promise((resolve,reject) => {
+    function clean() {
+      image.removeEventListener('load',onLoad);
+      image.removeEventListener('error',onError);
+    }
+    function onLoad() { clean(); resolve(); }
+    function onError() { clean(); reject(new Error('Image unavailable')); }
+    image.addEventListener('load',onLoad,{once:true});
+    image.addEventListener('error',onError,{once:true});
+    if (retry || image.complete) {
+      const url = new URL(image.src);
+      url.searchParams.set('retry',String(Date.now()));
+      image.src = url.href;
+    }
   });
-}));
-let openingTimeout;
-const openingDeadline = new Promise(resolve => { openingTimeout = setTimeout(resolve,3000); });
-Promise.race([openingReady,openingDeadline]).then(() => {
-  clearTimeout(openingTimeout);
-  play();
-  loading.hidden = true;
-  document.querySelector('.controls').hidden = false;
-  sound.hidden = false;
-  dreamAudio.start();
-});
+}
+function showOpeningRetry(message) {
+  loading.replaceChildren(document.createTextNode(message+' '));
+  const retry = document.createElement('button');
+  retry.textContent = '重新加载';
+  retry.style.textDecoration = 'underline';
+  retry.addEventListener('click',() => beginOpening(true),{once:true});
+  loading.append(retry);
+}
+function beginOpening(retry = false) {
+  const attempt = ++openingAttempt;
+  loading.hidden = false;
+  loading.textContent = '正在等花房和他们一起来，初次打开可能稍慢。';
+  const timer = setTimeout(() => {
+    if (attempt === openingAttempt) showOpeningRetry('图片还在路上，可以继续等，或');
+  },12000);
+  Promise.all(openingImages.map(image => loadOpeningImage(image,retry))).then(() => {
+    clearTimeout(timer);
+    if (attempt !== openingAttempt) return;
+    play();
+    loading.hidden = true;
+    document.querySelector('.controls').hidden = false;
+    sound.hidden = false;
+    dreamAudio.start();
+  }).catch(() => {
+    clearTimeout(timer);
+    if (attempt === openingAttempt) showOpeningRetry('图片暂时没连上，请');
+  });
+}
+beginOpening();
