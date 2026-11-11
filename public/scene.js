@@ -28,7 +28,7 @@ function ease(value, start, end) {
 }
 function setPhase(next) {
   phase = next;
-  if (next === 'garden') dreamAudio.selectTrack('surge');
+  if (next === 'garden') { dreamAudio.selectTrack('surge'); preloadAlbum(); }
   film.dataset.phase = next;
   hand.hidden = next !== 'invite';
   garden.hidden = next !== 'handoff' && next !== 'garden';
@@ -181,10 +181,10 @@ const cards = {
 
 // Replace src and alt with approved photos later. The same mapping drives both views.
 const gardenPhotos = [
-  {button: 'photo-first', src: 'assets/lily-print.webp', alt: '阳光下的粉白百合',
+  {button: 'photo-first', src: 'assets/fast/lily-print.webp', alt: '阳光下的粉白百合',
     caption: '今天的百合', note: '这束花摆好以后，屋子就一直有你的香味。',
     rect: [67.9, 66.35, 5.7, 2.08], cut: 'polygon(8% 0,97% 6%,100% 100%,0 93%)', angle: -7},
-  {button: 'photo-second', src: 'assets/garden-print.webp', alt: '花房的拱窗和阳光',
+  {button: 'photo-second', src: 'assets/fast/garden-print.webp', alt: '花房的拱窗和阳光',
     caption: '花房的下午', note: '下午的光刚刚好。想和你一起多坐一会儿。',
     rect: [73.4, 67.42, 6.63, 2.9], cut: 'polygon(22% 0,100% 24%,74% 100%,0 73%)', angle: 12}
 ];

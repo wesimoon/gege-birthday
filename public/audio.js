@@ -8,6 +8,44 @@ const dreamAudio = (() => {
   speech.preload = 'auto';
   let enabled = true, track = 'sdl', quiet = false, speaking = false;
   let musicRequest = 0, voiceRequest = 0;
+  const cached = new Map();
+  const pending = new Set();
+  const queue = [];
+  let fetching = false;
+  function downloadNext() {
+    if (fetching || !queue.length) return;
+    fetching = true;
+    const url = queue.shift();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(),15000);
+    fetch(url,{signal:controller.signal}).then(response => {
+      if (!response.ok) throw new Error('Audio unavailable');
+      return response.blob();
+    }).then(blob => cached.set(url,URL.createObjectURL(blob))).catch(() => {}).finally(() => {
+      clearTimeout(timeout);
+      pending.delete(url);
+      fetching = false;
+      downloadNext();
+    });
+  }
+  function warm(url) {
+    if (cached.has(url) || pending.has(url)) return;
+    pending.add(url);
+    queue.push(url);
+    downloadNext();
+  }
+  function preloadScene(name) {
+    const groups = {
+      sdl:['01_intro_jagiya','02_come_with_me','03_greenhouse_intro'],
+      surge:['05_tarot_lovers','06_rose_quartz','07_amethyst','08_clear_quartz','09_citrine',
+        'cake_01_first_countdown','cake_02_teasing_interrupt','cake_03_second_countdown'],
+      lover:['15_ring_pulltab','16_ring_silverband','17_ring_green_gem','18_ring_main_ring','19_birthday_wish'],
+      wherever:[]
+    };
+    (groups[name] || []).forEach(key => warm('assets/fast/audio/voice/'+key+'.mp3'));
+    const next = {sdl:'surge',surge:'lover',lover:'wherever'}[name];
+    if (next) warm('assets/fast/audio/bgm/'+next+'.mp3');
+  }
   function notify() {
     window.dispatchEvent(new Event('dream-audio-state'));
   }
@@ -26,7 +64,8 @@ const dreamAudio = (() => {
     stopVoice();
     if (!enabled) return false;
     const request = voiceRequest;
-    speech.src = 'assets/audio/voice/'+key+'.mp3';
+    const url = 'assets/fast/audio/voice/'+key+'.mp3';
+    speech.src = cached.get(url) || url;
     speech.volume = .86;
     speaking = true;
     updateDuck();
@@ -40,7 +79,7 @@ const dreamAudio = (() => {
   }
   function start() {
     if (!enabled) return;
-    if (!music.getAttribute('src')) music.src = 'assets/audio/bgm/'+track+'.mp3';
+    if (!music.getAttribute('src')) music.src = 'assets/fast/audio/bgm/'+track+'.mp3';
     updateDuck();
     if (!music.paused) return;
     const request = ++musicRequest;
@@ -53,10 +92,12 @@ const dreamAudio = (() => {
     if (track !== name || !music.getAttribute('src')) {
       musicRequest++;
       track = name;
-      music.src = 'assets/audio/bgm/'+name+'.mp3';
+      const url = 'assets/fast/audio/bgm/'+name+'.mp3';
+      music.src = cached.get(url) || url;
     } else if (restart) music.currentTime = 0;
     updateDuck();
     if (enabled) start();
+    preloadScene(name);
   }
   function toggle() {
     enabled = !enabled;

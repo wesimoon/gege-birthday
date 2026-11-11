@@ -89,7 +89,7 @@ function openChapter(kind, title, trigger, spot) {
   showCard();
 }
 function cardArt(id) {
-  return '<img src="assets/tarot-'+id+'.webp" alt="">';
+  return '<img src="assets/fast/tarot-'+id+'.webp" alt="">';
 }
 function clearCrystals() {
   delete byId('tarot-view').dataset.stone;
@@ -122,7 +122,7 @@ function initChapter() {
     else detailTimer = setTimeout(() => { words.textContent = item.text; }, 420);
   }));
   byId('crystals').innerHTML = stones.map(([id,name]) =>
-    '<button class="crystal '+id+'" aria-label="观察'+name+'"><img src="assets/crystal-'+id+'.webp" alt=""><span>'+name+'</span></button>'
+    '<button class="crystal '+id+'" aria-label="观察'+name+'"><img src="assets/fast/crystal-'+id+'.webp" alt=""><span>'+name+'</span></button>'
   ).join('');
   [...byId('crystals').children].forEach((button,index) => button.addEventListener('click', () => {
     if (card.classList.contains('is-closing')) return;
@@ -158,7 +158,7 @@ function initChapter() {
   byId('skip-ritual').addEventListener('click', () => { dreamAudio.stopVoice(); extinguish(false); });
   byId('opened-gift').addEventListener('click', replayGiftReply);
   byId('finale-choices').innerHTML = finaleChoices.map((item,index) =>
-    '<button style="--ring-position:'+([15,38,62,85][index])+'%;--delay:'+(-index*.87)+'s" aria-label="'+item.name+'" aria-pressed="false"><span class="jewel"><img src="assets/jewel-'+jewelAssets[index]+'.webp" alt=""></span></button>'
+    '<button style="--ring-position:'+([15,38,62,85][index])+'%;--delay:'+(-index*.87)+'s" aria-label="'+item.name+'" aria-pressed="false"><span class="jewel"><img src="assets/fast/jewel-'+jewelAssets[index]+'.webp" alt=""></span></button>'
   ).join('');
   [...byId('finale-choices').children].forEach((button,index) => button.addEventListener('click', () => selectFinale(index)));
   byId('finale-skip').addEventListener('click', () => {

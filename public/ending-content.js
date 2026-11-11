@@ -1,20 +1,20 @@
 const endingContent = {
   spreads: [
     {type:'portraits', left:{title:'一起心动过的人', photos:[
-      {src:'assets/baekhyun.png',caption:'边伯贤',position:'42% 23%'},
-      {src:'assets/yeonjun.png',caption:'崔然竣',position:'49% 25%'}
+      {src:'assets/fast/baekhyun.webp',caption:'边伯贤',position:'42% 23%'},
+      {src:'assets/fast/yeonjun.webp',caption:'崔然竣',position:'49% 25%'}
     ],caption:'从边伯贤到崔然竣，都是我们一起尖叫过的人呀。'},right:{title:'你的老公',photos:[
-      {src:'assets/yoongi-invitation.webp',position:'54% 40%'},
-      {src:'assets/album-yoongi-white.webp',position:'52% 27%'},
-      {src:'assets/album-yoongi-black.webp',position:'51% 49%'}
+      {src:'assets/fast/yoongi-invitation.webp',position:'54% 40%'},
+      {src:'assets/fast/album-yoongi-white.webp',position:'52% 27%'},
+      {src:'assets/fast/album-yoongi-black.webp',position:'51% 49%'}
     ],caption:'这一页当然要留给你的老公。偏爱嘛，就要明目张胆一点。'}},
     {type:'gege',left:{title:'给今天的格格',photos:[
-      {src:'assets/album-gege-1.webp',alt:'格格的长发自拍',position:'50% 46%'},
-      {src:'assets/album-gege-2.webp',alt:'捧着柿子的格格',position:'51% 54%'}
+      {src:'assets/fast/album-gege-1.webp',alt:'格格的长发自拍',position:'50% 46%'},
+      {src:'assets/fast/album-gege-2.webp',alt:'捧着柿子的格格',position:'51% 54%'}
     ],caption:'这一页只留给今天的格格。'},right:{title:'今天也最漂亮',photos:[
-      {src:'assets/album-gege-4.webp',alt:'捧着花束的毕业照',position:'54% 77%'},
-      {src:'assets/album-gege-3.webp',alt:'穿蓝衣的格格',position:'58% 47%'},
-      {src:'assets/album-gege-5.webp',alt:'紫色灯光里的格格',position:'69% 40%'}
+      {src:'assets/fast/album-gege-4.webp',alt:'捧着花束的毕业照',position:'54% 77%'},
+      {src:'assets/fast/album-gege-3.webp',alt:'穿蓝衣的格格',position:'58% 47%'},
+      {src:'assets/fast/album-gege-5.webp',alt:'紫色灯光里的格格',position:'69% 40%'}
     ],caption:'今天、明天、以后，都要漂漂亮亮的。'}},
     {type:'future',left:{title:'和悦悦的合照',photos:[]},right:{lines:['这张还欠着呢。','下次见面，记得跟我拍一张哦。']}},
     {type:'envelope',left:{title:'写给格格的一封信',note:'翻到最后，是想认真对你说的话。'},right:{title:'To 格格'}}

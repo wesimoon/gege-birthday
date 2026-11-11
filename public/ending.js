@@ -32,7 +32,27 @@ function setEndingView(mode) {
   byId('ending-close').hidden = mode !== 'album';
   byId(mode === 'album' ? 'album' : mode === 'letter' ? 'friend-letter-title' : 'dream-end').focus({preventScroll:true});
 }
+let albumPreloaded = false;
+function preloadAlbum() {
+  if (albumPreloaded) return;
+  albumPreloaded = true;
+  const urls = ['assets/fast/emboss-cover.webp','assets/fast/emboss-paper.webp','assets/fast/emboss-envelope.webp'];
+  endingContent.spreads.forEach(spread => {
+    [spread.left,spread.right].forEach(leaf => {
+      (leaf?.photos || []).forEach(photo => { if (photo.src) urls.push(photo.src); });
+    });
+  });
+  function next() {
+    const src = urls.shift();
+    if (!src) return;
+    const image = new Image();
+    image.onload = image.onerror = next;
+    image.src = src;
+  }
+  next();
+}
 function openAlbum(index = 0) {
+  preloadAlbum();
   dreamAudio.stopVoice();
   dreamAudio.selectTrack('wherever');
   ending.hidden = false;

@@ -1,6 +1,6 @@
 #garden-card.to-ending{opacity:0;transform:scale(.985);transition:opacity .37s,transform .37s}
 #ending{position:fixed;inset:0;z-index:8;display:grid;place-items:center;isolation:isolate;overflow:hidden;color:#f6e8d1}
-.ending-scene{position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#252015c9,#382b1a22 68%),url("assets/birthday-garden.webp") center 55% / cover;animation:ending-light .9s ease both}
+.ending-scene{position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#252015c9,#382b1a22 68%),url("assets/fast/birthday-garden.webp") center 55% / cover;animation:ending-light .9s ease both}
 @keyframes ending-light{from{opacity:.25;filter:blur(7px)}to{opacity:1;filter:none}}
 #ending-close,#letter-close{position:absolute;z-index:3;top:8px;right:8px;min-width:44px;font:24px system-ui;color:#6a4934;text-shadow:none}
 #ending-close{top:max(12px,env(safe-area-inset-top));right:12px;border-radius:50%;background:#f0e1c6ee}
@@ -97,14 +97,14 @@
 #album{width:min(88vw,calc(82dvh * 1.76),1480px)}
 .book{padding:10px 13px 15px;background:linear-gradient(90deg,#555b46,#858b68 48%,#585d46 51%,#717a59);box-shadow:0 0 0 1px #b9a379,0 4px 0 #4d513c,0 8px 0 #2e3428,0 25px 70px #20150caf}
 .book:has([data-spread="cover"]){width:min(440px,70vw,62dvh)}
-#album-cover,.cover-turn{display:block;position:relative;aspect-ratio:4/5;width:100%;padding:0;border:0;border-radius:10px 16px 16px 9px;background:#6d775d url("assets/emboss-cover.webp") center / 100% 100% no-repeat;color:#f1dcb0;text-shadow:0 2px 2px #332b1ab0;box-shadow:0 4px 0 #4c543e,0 8px 0 #333b2b,0 22px 35px #21180e8c}
+#album-cover,.cover-turn{display:block;position:relative;aspect-ratio:4/5;width:100%;padding:0;border:0;border-radius:10px 16px 16px 9px;background:#6d775d url("assets/fast/emboss-cover.webp") center / 100% 100% no-repeat;color:#f1dcb0;text-shadow:0 2px 2px #332b1ab0;box-shadow:0 4px 0 #4c543e,0 8px 0 #333b2b,0 22px 35px #21180e8c}
 #album-cover span,#album-cover strong,#album-cover i,.cover-turn span,.cover-turn strong,.cover-turn i{position:absolute;left:13%;right:5%;text-align:center}
 #album-cover span,.cover-turn span{top:51%;font-size:clamp(14px,2.4vw,23px)}
 #album-cover strong,.cover-turn strong{top:61%;font-size:clamp(22px,4.3vw,40px);letter-spacing:.1em}
 #album-cover i,.cover-turn i{top:76%;font-size:clamp(13px,2vw,19px)}
 #album-cover .album-lily,.cover-turn .album-lily{display:none}
 .cover-turn.turning-leaf{position:absolute;width:50%;height:100%;z-index:7}
-.album-leaf,.album-leaf.leaf-right{height:min(81dvh,calc((88vw - 26px) / 1.76),810px);background:#f8f0e2 url("assets/emboss-paper.webp") center / 100% 100%;padding:clamp(20px,3.6vw,62px) clamp(25px,4.2vw,72px);border-radius:7px 16px 16px 6px;box-shadow:inset 2px 0 3px #ad8f6052,0 2px 0 #d3ba96,0 4px 0 #a58b69;color:#654c3d}
+.album-leaf,.album-leaf.leaf-right{height:min(81dvh,calc((88vw - 26px) / 1.76),810px);background:#f8f0e2 url("assets/fast/emboss-paper.webp") center / 100% 100%;padding:clamp(20px,3.6vw,62px) clamp(25px,4.2vw,72px);border-radius:7px 16px 16px 6px;box-shadow:inset 2px 0 3px #ad8f6052,0 2px 0 #d3ba96,0 4px 0 #a58b69;color:#654c3d}
 .album-leaf.leaf-left{box-shadow:inset -15px 0 19px -17px #6e482b,0 2px 0 #d3ba96,0 4px 0 #a58b69}
 .album-leaf.leaf-right{box-shadow:inset 15px 0 19px -16px #6e482b,0 2px 0 #d3ba96,0 4px 0 #a58b69}
 .album-leaf h3{font-family:"Songti SC",SimSun,Georgia,serif;font-size:clamp(24px,3.25vw,51px);line-height:1.15;margin:0 0 12px;color:#64492e}
@@ -120,14 +120,14 @@
 .future-window img{width:100%;height:100%;object-fit:cover}
 [data-spread="future"] .leaf-right p{font-size:clamp(18px,2.6vw,34px);margin:12px 0}
 [data-spread="envelope"] .leaf-left .album-lily{display:none}
-#friend-envelope{isolation:isolate;position:relative;width:min(100%,470px);aspect-ratio:4/3;border:none;rotate:none;background:transparent url("assets/emboss-envelope.webp") center / contain no-repeat;box-shadow:none;color:#694830}
+#friend-envelope{isolation:isolate;position:relative;width:min(100%,470px);aspect-ratio:4/3;border:none;rotate:none;background:transparent url("assets/fast/emboss-envelope.webp") center / contain no-repeat;box-shadow:none;color:#694830}
 #friend-envelope span{position:absolute;top:34%;left:18%;right:18%;font:italic clamp(19px,3.6vw,44px) Georgia,SimSun,serif}
 #friend-envelope::after{content:"";position:absolute;inset:21% 18% 18%;width:auto;height:auto;border-radius:3px;translate:none;z-index:-1;opacity:0;background:#fcf1dd;border:1px solid #c6ac7c}
 #friend-envelope.unsealing span{opacity:0;transition:opacity .3s}
 #friend-envelope.unsealing::after{z-index:2;animation:extract-letter .65s ease both}
 @keyframes extract-letter{0%{opacity:0;transform:translateY(12%) scaleY(.45)}60%{opacity:1}100%{opacity:1;transform:translateY(-38%) scale(1.04)}}
 #letter-scene{width:min(1030px,calc(100vw - 32px))}
-#letter-scene .friend-letter{min-height:min(76dvh,740px);max-height:calc(100dvh - 35px);background:#fbf3e4 url("assets/emboss-paper.webp") center / 100% 100%;padding:clamp(26px,6vw,78px);border:0;outline:0;border-radius:13px;box-shadow:0 19px 55px #29190d78}
+#letter-scene .friend-letter{min-height:min(76dvh,740px);max-height:calc(100dvh - 35px);background:#fbf3e4 url("assets/fast/emboss-paper.webp") center / 100% 100%;padding:clamp(26px,6vw,78px);border:0;outline:0;border-radius:13px;box-shadow:0 19px 55px #29190d78}
 .friend-letter h2{font:400 clamp(29px,5vw,53px) Georgia,SimSun,serif;color:#65432b}
 #birthday-letter{background:#fff9ed55;color:#624932;line-height:1.95}
 @media(max-width:600px){
@@ -235,7 +235,7 @@
   max-height:calc(100dvh - 108px);
   min-height:0;
   padding:clamp(25px,5dvh,51px) clamp(23px,5vw,58px) 16px;
-  background:linear-gradient(#fff9eea6,#fff9eee0),url("assets/emboss-paper.webp") center / 100% 100%;
+  background:linear-gradient(#fff9eea6,#fff9eee0),url("assets/fast/emboss-paper.webp") center / 100% 100%;
   outline:1px solid #b492654f;
   outline-offset:-10px;
   border-radius:8px;
