@@ -10,11 +10,25 @@
 <link rel="stylesheet" href="/chapter.css?v=stable-media3">
 <link rel="stylesheet" href="/ritual.css?v=gift3">
 <link rel="stylesheet" href="/ending.css?v=final">
-<script src="/ending-content.js?v=final" defer></script>
-<script src="/ending.js?v=stable-media3" defer></script>
-<script src="/audio.js?v=stable-media3" defer></script>
-<script src="/chapter.js?v=audio1" defer></script>
-<script src="/scene.js?v=stable-media3" defer></script>
+<script>
+(function () {
+  function notice(text) {
+    var node = document.getElementById('loading');
+    if (node) { node.hidden = false; node.textContent = text; }
+  }
+  window.addEventListener('error', function (event) {
+    if (!window.dreamStarted && (event.target.tagName === 'SCRIPT' || event.message)) {
+      window.dreamBootFailed = true;
+      notice('启动没有完成，请用手机自带浏览器重新打开此链接。');
+    }
+  }, true);
+  setTimeout(function () {
+      if (!window.dreamStarted && !window.dreamBootFailed)
+        notice('启动文件还在加载，请检查网络后刷新，或用手机自带浏览器打开。');
+  }, 12000);
+})();
+</script>
+<script type="module" src="/.build/app.js"></script>
 </head>
 <body>
 <main id="film" aria-label="Dear Gege, Tonight Is Yours · 百合花房" data-phase="loading">
@@ -179,7 +193,7 @@
     <button id="skip-cue" hidden>略过</button>
     <div id="caption" role="status" aria-live="polite"><span id="speaker"></span><p id="line"></p></div>
   </section>
-  <p id="loading" role="status">正在等花房亮起来</p>
+  <p id="loading" role="status">正在打开格格的梦境…</p>
 </main>
 </body>
 </html>

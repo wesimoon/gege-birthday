@@ -449,4 +449,5 @@ function beginOpening(retry = false) {
     if (attempt === openingAttempt) showOpeningRetry('图片暂时没连上，请');
   });
 }
+window.dreamStarted = true;
 beginOpening();
